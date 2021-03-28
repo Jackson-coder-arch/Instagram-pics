@@ -1,20 +1,20 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.db.models.signals import image_post_save
+# from django.db.models.signals import image_post_save
 
 # Create your models here.
-class Image_post(models.Model):
+class Image_posts(models.Model):
     image = models.ImageField(upload_to='pictures/', default='default.jpg')
     image_name =models.CharField(max_length=70)
     image_caption = models.CharField(max_length=100)
     likes =models.ManyToManyField(User,related_name='likes')
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='image_posts')
+    # user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='image_posts')
     # profile = models.Foreign_key()
 
     class Meta:
         ordering = ["-pk"]
 
-    def def get_absolute_url(self):
+    def get_absolute_url(self):
         return f"/post/{self.id}"
 
     @property
@@ -49,9 +49,9 @@ class Profile(models.Model):
     def delete_profile(self):
         self.delete()
 
-class Comment(model.Model):
+class Comment(models.Model):
     comment = models.TextField()
-    image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='comments')
+    # image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='comments')
     user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='comments')
 
     def save_comment(self):
@@ -64,7 +64,7 @@ class Comment(model.Model):
         return self.comment
 
 
-class Follow(models.MOdel):
+class Follow(models.Model):
     follower = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='following')
     followed = models.ForeignKey(Profile, on_delete=models.CASCADE,related_name='followers')
 
@@ -73,6 +73,6 @@ class Follow(models.MOdel):
 
 class Likes(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='user_like')
-    image = models.ForeignKey(Image, on_delete=models.CASCADE,related_name='image_like')
+    image = models.ForeignKey(Image_posts, on_delete=models.CASCADE,related_name='image_like')
 
 
