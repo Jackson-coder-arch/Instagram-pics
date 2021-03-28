@@ -46,3 +46,31 @@ class Profile(models.Model):
 
     def delete_profile(self):
         self.delete()
+
+class Comment(model.Model):
+    comment = models.TextField()
+    image = models.ForeignKey(Image, on_delete=models.CASCADE, related_name='comments')
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='comments')
+
+    def save_comment(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
+
+    def __str__(self):
+        return self.comment
+
+
+class Follow(models.MOdel):
+    follower = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='following')
+    followed = models.ForeignKey(Profile, on_delete=models.CASCADE,related_name='followers')
+
+    def __str__(self):
+        return f'{self.follower} Follow'
+
+class Likes(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='user_like')
+    image = models.ForeignKey(Image, on_delete=models.CASCADE,related_name='image_like')
+
+
