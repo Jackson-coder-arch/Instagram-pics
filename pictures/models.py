@@ -1,12 +1,14 @@
 from django.db import models
+from django.contrib.auth.models import User
+from django.db.models.signals import image_post_save
 
 # Create your models here.
-class Image(models.Model):
+class Image_post(models.Model):
     image = models.ImageField(upload_to='pictures/', default='default.jpg')
     image_name =models.CharField(max_length=70)
     image_caption = models.CharField(max_length=100)
     likes =models.ManyToManyField(User,related_name='likes')
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='images')
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='image_posts')
     # profile = models.Foreign_key()
 
     class Meta:
@@ -19,10 +21,10 @@ class Image(models.Model):
     def get_all_comments(self):
         return self.comments.all()
 
-    def save_image(self):
+    def save_image_post(self):
         self.save()
 
-    def delete_image(self):
+    def delete_image_post(self):
         self.delete()
 
     def __str__(self):
