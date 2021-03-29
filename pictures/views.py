@@ -5,7 +5,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from .models import Image_posts,Profile,Comment
 
 # Create your views here.
-def Image_posts(request):
+def home(request):
     images = Image_post.objects.all()
     current_user = request.user
     users = Profile.objects.all()
@@ -18,21 +18,22 @@ def Image_posts(request):
             post.save()
             return HttpResponseRedirect(request.path_info)
 
-            else:
-                form = NewPostForm()
-                params ={
-                    images : images,
-                    'form': form,
-                    'users': users,
-                }
-            return render(request,'home.html', params)
+        else:
+            form = NewPostForm()
+            params ={
+                images : images,
+                'form': form,
+                'users': users,
+            }
+
+        return render(request,'home.html', params)
 
 
 
 
 
 
-def NewPost(request):
+def newPost(request):
     user = request.user
     files_objs = []
 
