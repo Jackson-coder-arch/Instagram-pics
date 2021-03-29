@@ -8,5 +8,6 @@ from .views import (
 
 urlpatterns = [
     path('',home, name = 'home'),
-    re_path(r'^newpost/',newPost)
+    path('newPost',newPost name ='newPost'),
+    re_path(r'^newpost/',newPost),
 ]
