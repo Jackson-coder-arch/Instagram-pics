@@ -1,10 +1,11 @@
 from django.db import models
 from django.contrib.auth.models import User
+from cloudinary.models import CloudinaryField
 # from django.db.models.signals import image_post_save
 
 # Create your models here.
 class Image_posts(models.Model):
-    image = models.ImageField(upload_to='pictures/', default='default.jpg')
+    image = CloudinaryField('image')
     image_name =models.CharField(max_length=70)
     image_caption = models.CharField(max_length=100)
     likes =models.ManyToManyField(User,related_name='likes')
@@ -35,7 +36,7 @@ class Image_posts(models.Model):
 
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
-    profile_photo = models.ImageField(upload_to='images/',default='default.jpg')
+    profile_photo = CloudinaryField('image')
     bio = models.TextField(max_length=500,default='My Bio')
     name = models.CharField(max_length=50)
     location = models.CharField(max_length=60)

@@ -8,13 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     
-    {% block content %}
-        {% load bootstarp4 %}
-    {% endblock content %}
+    {% block styles %}
+        {% bootstrap_css %}
+    {% endblock styles %}
         
+   
 </head>
 <body>
+    
     {% block content %}
+    {% include 'navbar.html' %}
         <h1>Instagram</h1>
     {% endblock content %}
 
