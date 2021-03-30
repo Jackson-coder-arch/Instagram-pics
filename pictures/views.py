@@ -24,32 +24,26 @@ def home(request):
 
 
 
-def newPost(request):
+def profile(request):
     
    
 
-    return render(request,'home.html')
+    return render(request,'profile.html')
+
+def NewPost(request):
+    if request.method == 'POST':
+        form = NewPostForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['your_name']
+            email = form.cleaned_data['email']
+            recipient = InstagramLetterRecipient(name=name, email =email)
+            recipient.save()
+            HttpResponseRedirect('newpost')
+    else:
+        form = InstagramLetterForm()
+
+    return render(request,'newpost.html',{'letterForm':form} )
 
 
 
 
-#  if request.method == 'POST':
-#         form = request.FILES.getlist('content')
-#         caption = form.cleaned_data.get('caption')
-
-#         for files in files:
-#             file_instance = PostFileContent(file=file, user=user)
-#             file_instance.save()
-#             files_objs.append(file_instance)
-
-#         p,created = Post.objects.get_or_create(image_caption=image_caption, user = user)
-#         p.save()
-#         return redirect('home')
-
-#     else:
-        
-#         form = NewPostForm()
-
-#         context = {
-#             'form' : form,
-#         }

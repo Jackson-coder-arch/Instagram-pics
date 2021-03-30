@@ -76,9 +76,10 @@ class Follow(models.Model):
 #     user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='user_like')
 #     image = models.ForeignKey(Image_posts, on_delete=models.CASCADE,related_name='image_like')
 
-class NewsLetterUsers(models.Model):
+class InstagramLetterRecipients(models.Model):
+    name = models.CharField(max_length= 30)
     email =models.EmailField(max_length=30)
-    date_added = models.DateTimeField(auto_now_add=True)
+    # date_added = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.email
