@@ -1,34 +1,31 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from .models import Image_posts,Profile,Comment
-from .forms import Image_posts
+from .forms import ImageForm
 
 # Create your views here.
 
 def home(request):
     if request.method == 'GET':
-        photos = Image_posts.objects.all()
+        photos = Image_posts.get_images()
 
 
-
-    if request.method == 'POST':
-        form = Image_postsForm(request.POST)
-        if form.is_valid():
-            print('form is valid')
-    else:
-        form = Image_postsForm()
-
-    
-
-    return render(request,'home.html',{'form': form ,'photos':photos})
+    return render(request,'home.html',{'photos':photos})
 
 
 
 def NewPost(request):
-    
-   
 
-    return render(request,'home.html')
+    if request.method == 'POST':
+
+        form = ImageForm(request.POST)
+        if form.is_valid():
+            print('form is valid')
+    else:
+        form = ImageForm()
+        
+   
+    return render(request,'newpost.html',{'form':form})
 
 
 

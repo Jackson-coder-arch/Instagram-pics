@@ -1,19 +1,20 @@
 {% extends 'base.html' %}
-{% load bootstarap4 %}
+{% load bootstrap4 %}
 
 
-{% block context %}
-{{block.super}}
+{% block content %}
+{{ block.super }}
 
 <div class="container">
-    <form action="." method="post"  enctype="multipart/form-data">
+    <h1> Welcome</h1>
+    <form action="" method="post"  enctype="multipart/form-data">
 
         {% csrf_token %}
-        {{form.as_p}}
+        {% bootstrap_form form layout='inline' %}
        
         <button type="submit" class="btn btn-lg btn-success">Upload</button>
     </form>
-    
+
     {% if obj %}
         <h3>Succesfully uploaded : {{img_obj.caption}}</h3>
         <img src="{{ obj.image.url}}" alt="image" class="img-thumbnail"  >
@@ -42,6 +43,6 @@
   
 
     
-{% endblock context %}
+{% endblock %}
 
     

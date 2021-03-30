@@ -5,16 +5,22 @@ from cloudinary.models import CloudinaryField
 # Create your models here.
 class Image_posts(models.Model):
     image = CloudinaryField('image')
-    image_name =models.ForeignKey('auth.User',on_delete=models.CASCADE)
+    image_name =models.ForeignKey('Profile',on_delete=models.CASCADE,null=True,related_name='image_posts')
     image_caption = models.TextField()
     location = models.CharField(max_length=60)
+
+
+    @classmethod
+    def get_images(cls):
+        images = cls.objects.all()
+        return images
 
 
     class Meta:
         ordering = ["-pk"]
 
-    def get_absolute_url(self):
-        return f"/post/{self.id}"
+    # def get_absolute_url(self):
+    #     return f"/post/{self.id}"
 
     @property
     def get_all_comments(self):
@@ -27,19 +33,19 @@ class Image_posts(models.Model):
         self.delete()
 
     def __str__(self):
-        return self.caption
+        return self.image_caption
 
 
 
 
 class Profile(models.Model):
-    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile')
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='profile',null=True)
     profile_photo = CloudinaryField('image')
     bio = models.TextField(max_length=500,default='My Bio')
     name = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.Profile
+        return self.name
 
     def save_profile(self):
         self.user

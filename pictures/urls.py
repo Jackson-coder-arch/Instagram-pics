@@ -1,13 +1,10 @@
 from django.urls import path,re_path
 
-from .views import (
-    home,
-    NewPost,
-)
+from . import views
 
 
 urlpatterns = [
-    path('',home, name = 'home'),
-    path('NewPost/',NewPost, name ='NewPost'),
+    path('',views.home, name = 'home'),
+    path('NewPost/',views.NewPost, name ='NewPost'),
     # re_path(r'^Newpost/',newPost),
 ]
