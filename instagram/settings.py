@@ -129,10 +129,11 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, "static"),
 ]
-
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR,'media')
 
 cloudinary.config(
-    CLOUD_NAME ='CLOUD_NAME',
-    API_KEY ='API_KEY',
-    API_SECRET = 'API_SECRET'
+    cloud_name = os.environ.get('CLOUDINARY_CLOUD_NAME','dydhwkfmj'),
+    api_key = os.environ.get('CLOUDINARY_CLOUD_KEY','581448316934495'),
+    api_secret = os.environ.get('CLOUDINARY_API_SECRET','p8APZXIkxEI5RT6s99uHO3ypgZw'),
 )

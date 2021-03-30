@@ -1,10 +1,98 @@
 {% extends 'base.html' %}
-
+{% load bootstrap4 %}
 
 {% block content %}
     
     {{block.super}}
+    <div class="container-fluid">
+
+       <div class="row">
+           <div class="col-md-4">
+
+           </div>
+           
+           <div class="col-md-4">
+
+           </div>
+       </div>
+        <div class="content_container">
+            
+            {% for photo in photos  %}
+            <div class="card">
+                <div class="card_header">
+                    <div class="profile_image">
+
+                    </div>
+                    <div class="post_info">
+                        <div class="post_name">
+                            {{photo.image_name}}
+
+                        </div>
+                        <div class="post_location">
+                            Nairobi
+
+                        </div>
+                    </div>
+                    <div class="post_options">
+                        <i class="fas fa-ellipsis-h"></i>
+                    </div>
+
+                </div>
+                <div class="post_image">
+                    <img src="{{photo.image.url}} " alt="">
+                </div>
+                <div class="engagement">
+                    <a href=""><i class="fal fa-heart"></i></a>
+                    <a href=""><i class="fas fa-comment"></i></a>
+                    <a href=""><i class="fas fa-share-square"></i></a>
+                    <a href=""><i class="far fa-save"></i></a>
+                </div>
+                <div class="likes">
+                    <a href="">240</a>
+                </div>
+                <div class="caption">
+                    <a href=""><h2>{{photo.image_name}}</h2> </a>
+                    <span><p>{{photo.image_caption}}</p> </span>
+                </div>
+                <div class="time_posted">
+                    {{photo.created_date |timesince}} ago
+                </div>
+            </div>
+            <!-- <div class="row">
+                <div class="col-md-4">
+                    <div class="card " style="height: 100%; width: 80%;">
+                        <img src="{{photo.image.url}} "  class="card-img-top" alt="...">
+                        <p>{{photo.image_name}} </p>
+                        <p>{{photo.image_caption}} </p>
+        
+                    </div>
+
+            </div> -->
+
+            {% endfor%}
+
+        </div>
+
+
+
+
+    
+
+
+      
+    </div>
+    
+
+
         
 {% endblock content %}
     
+<!-- <div class="col-md-4">
+    <form  action="{%url 'home'%}" method="post">
+        {%csrf_token%}
     
+        {% bootstrap_form form layout='inline' %}
+        <input type="submit" value="Subscribe">
+      
+      </form>
+   </div> -->

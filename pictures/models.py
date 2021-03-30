@@ -1,16 +1,16 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
-# from django.db.models.signals import image_post_save
+# from django.utils import timezone
 
 # Create your models here.
 class Image_posts(models.Model):
     image = CloudinaryField('image')
-    image_name =models.CharField(max_length=70)
-    image_caption = models.CharField(max_length=100)
-    likes =models.ManyToManyField(User,related_name='likes')
+    image_name =models.ForeignKey('auth.User',on_delete=models.CASCADE)
+    image_caption = models.TextField()
+    # created_date = models.DateTimeField(default=timezone.now)
+    # likes =models.ManyToManyField(User,related_name='likes')
     # user = models.ForeignKey(Profile, on_delete=models.CASCADE, related_name='image_posts')
-    # profile = models.Foreign_key()
 
     class Meta:
         ordering = ["-pk"]
@@ -29,7 +29,7 @@ class Image_posts(models.Model):
         self.delete()
 
     def __str__(self):
-        return f'{self.user.name} Image '
+        return self.image_name
 
 
 
@@ -42,7 +42,7 @@ class Profile(models.Model):
     location = models.CharField(max_length=60)
 
     def __str__(self):
-        return f'{self.user.username} Profile'
+        return self.Profile
 
     def save_profile(self):
         self.user
@@ -72,8 +72,15 @@ class Follow(models.Model):
     def __str__(self):
         return f'{self.follower} Follow'
 
-class Likes(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='user_like')
-    image = models.ForeignKey(Image_posts, on_delete=models.CASCADE,related_name='image_like')
+# class Likes(models.Model):
+#     user = models.ForeignKey(User, on_delete=models.CASCADE,related_name='user_like')
+#     image = models.ForeignKey(Image_posts, on_delete=models.CASCADE,related_name='image_like')
+
+class NewsLetterUsers(models.Model):
+    email =models.EmailField(max_length=30)
+    date_added = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.email
 
 
