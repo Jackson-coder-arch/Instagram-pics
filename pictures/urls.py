@@ -2,12 +2,12 @@ from django.urls import path,re_path
 
 from .views import (
     home,
-    newPost,
+    NewPost,
 )
 
 
 urlpatterns = [
     path('',home, name = 'home'),
-    path('newPost/',newPost, name ='newPost'),
-    re_path(r'^newpost/',newPost),
+    path('NewPost/',NewPost, name ='NewPost'),
+    # re_path(r'^Newpost/',newPost),
 ]

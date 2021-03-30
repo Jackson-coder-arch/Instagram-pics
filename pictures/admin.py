@@ -3,7 +3,6 @@ from .models import (
     Profile,
     Image_posts,
     Comment,
-    NewsLetterUsers
 )
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
@@ -17,6 +16,4 @@ class Image_posts(admin.ModelAdmin):
 class Comment(admin.ModelAdmin):
     pass
 
-@admin.register(NewsLetterUsers)
-class NewsLetterUsers(admin.ModelAdmin):
-    pass
+

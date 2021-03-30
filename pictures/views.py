@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect,get_object_or_404
 from django.http import HttpResponse,HttpResponseRedirect
 from .models import Image_posts,Profile,Comment
-from .forms import InstagramLetterForm
+from .forms import Image_posts
 
 # Create your views here.
 
@@ -12,11 +12,11 @@ def home(request):
 
 
     if request.method == 'POST':
-        form = InstagramLetterForm(request.POST)
+        form = Image_postsForm(request.POST)
         if form.is_valid():
             print('form is valid')
     else:
-        form = InstagramLetterForm()
+        form = Image_postsForm()
 
     
 
@@ -24,26 +24,11 @@ def home(request):
 
 
 
-def profile(request):
+def NewPost(request):
     
    
 
-    return render(request,'profile.html')
-
-def NewPost(request):
-    if request.method == 'POST':
-        form = NewPostForm(request.POST)
-        if form.is_valid():
-            name = form.cleaned_data['your_name']
-            email = form.cleaned_data['email']
-            recipient = InstagramLetterRecipient(name=name, email =email)
-            recipient.save()
-            HttpResponseRedirect('newpost')
-    else:
-        form = InstagramLetterForm()
-
-    return render(request,'newpost.html',{'letterForm':form} )
-
+    return render(request,'home.html')
 
 
 
