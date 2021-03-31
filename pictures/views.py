@@ -35,22 +35,31 @@ def NewPost(request):
 
 
 def register(request):
-    form = UserCreationForm()
-    context = {'form':form}
-    return render(request, 'django_registration/registration_form')
+    if request.method =='POST':
+        form = UserCreationForm()
+        context = {'form':form}
+        if form.is_valid():
+            form.save()
+            username = form.cleaned_data.get('username')
+            messages.success(request, f'Your account has been created! You are now able to log in')
+            return redirect('login')
+    else:
+        form = UserRegisterForm()
+    return render(request, 'django_registration/registration_form',{'form':form} )
+
 
 @login_required(login_url='/accounts/login/')
 def profile(request):
     if request.method == 'POST':
-        Profile = Profile(request.POST, request.FILES)
-        if profile.is_valid():
-            post = profile.save(commit=False)
-            post.save()
+        form = Profile(request.POST, request.FILES)
+        if form.is_valid():
+            form = profile.save(commit=False)
+            form.save()
             return redirect('home')
-    # else:
-    #     form = Profile()
+    else:
+        form = Profile()
 
-    return render(request,'profile.html',{'profile':profile})
+    return render(request,'profile.html',{'form':form})
 
 
 

@@ -2,7 +2,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 
-# Create your models here.
 class Image_posts(models.Model):
     image = CloudinaryField('image')
     image_name =models.ForeignKey('Profile',on_delete=models.CASCADE,null=True,related_name='image_posts')
@@ -45,7 +44,7 @@ class Profile(models.Model):
     name = models.CharField(max_length=50)
 
     def __str__(self):
-        return self.name
+        return f'{self.user.username} Profile'
 
     def save_profile(self):
         self.user

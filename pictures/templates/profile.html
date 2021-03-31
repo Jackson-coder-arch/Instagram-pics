@@ -12,6 +12,15 @@
        
         <button type="submit" class="btn btn-lg btn-success">Upload</button>
     </form>
+
+    <div class="media">
+        <img src="{{user.profile.profile_photo.url}} " class="rounded-circle account-img" alt="profile_image">
+        <div class="media-body">
+            <h2 class="account-heading">{{user.profile.name}} </h2>
+            <p class="text-secondary">{{user.profile.bio}} </p>
+        </div>
+    </div>
+    
 </div>
     
 {% endblock content %}
