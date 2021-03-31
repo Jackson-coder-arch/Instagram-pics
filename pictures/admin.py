@@ -8,7 +8,11 @@ class ProfileAdmin(admin.ModelAdmin):
 
 @admin.register(Image_posts)
 class Image_posts(admin.ModelAdmin):
-    pass
+    search_fields = ['image_name','image_caption']
+
+    class Meta:
+        model = Image_posts
+
 
 @admin.register(Comment)
 class Comment(admin.ModelAdmin):

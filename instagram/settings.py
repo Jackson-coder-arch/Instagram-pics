@@ -137,3 +137,5 @@ cloudinary.config(
     api_key = os.environ.get('CLOUDINARY_CLOUD_KEY','581448316934495'),
     api_secret = os.environ.get('CLOUDINARY_API_SECRET','p8APZXIkxEI5RT6s99uHO3ypgZw'),
 )
+LOGIN_REDIRECT_URL='/'
+LOGOUT_REDIRECT_URL='/accounts/login/'

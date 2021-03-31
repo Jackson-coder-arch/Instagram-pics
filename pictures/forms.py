@@ -7,3 +7,5 @@ class ImageForm(forms.ModelForm):
         model = Image_posts
         fields =('image','image_caption')
 
+
+
