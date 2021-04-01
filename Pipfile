@@ -5,16 +5,14 @@ name = "pypi"
 
 [packages]
 Django = "*"
-pillow = "*"
+Pillow = "*"
 bootstrap4 = "*"
 django-bootstrap4 = "*"
 psycopg2-binary = "*"
 cloudinary = "*"
 django-registration = "*"
 gunicorn = "*"
-django-heroku = "*"
 whitenoise = "*"
-python-decouple = "*"
 coverage = "*"
 
 [dev-packages]
