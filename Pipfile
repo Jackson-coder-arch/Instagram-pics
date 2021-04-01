@@ -4,7 +4,7 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
+Django = "*"
 pillow = "*"
 bootstrap4 = "*"
 django-bootstrap4 = "*"
@@ -14,7 +14,8 @@ django-registration = "*"
 gunicorn = "*"
 django-heroku = "*"
 whitenoise = "*"
-decouple = "*"
+python-decouple = "*"
+coverage = "*"
 
 [dev-packages]
 

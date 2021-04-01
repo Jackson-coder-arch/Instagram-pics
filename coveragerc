@@ -1,0 +1,15 @@
+[run]
+branch = True
+source = 
+    instagram/
+    pictures/
+omit =
+    *migrations*
+    *__init__*
+    *tests*
+
+[report]
+show_missing = True
+exclude_lines =
+    def __str__
+

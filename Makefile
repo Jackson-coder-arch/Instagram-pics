@@ -9,3 +9,6 @@ migrate:
 
 admin:
 	python manage.py createsuperuser
+
+test: 
+	coverage run manage.py test && coverage html
