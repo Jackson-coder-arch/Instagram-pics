@@ -36,7 +36,7 @@ SECRET_KEY = 'SECRET_KEY'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = ['localhost','127.0.0.1','[::1]']
 
 
 # Application definition
@@ -90,7 +90,6 @@ WSGI_APPLICATION = 'instagram.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# if config('MODE')=="dev":
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
@@ -102,17 +101,9 @@ DATABASES = {
     }
     
 }
-# production
-# else:
-#    DATABASES = {
-#        'default': dj_database_url.config(
-#            default=config('DATABASE_URL')
-#        )
-#    }
-# db_from_env = dj_database_url.config(conn_max_age=500)
-# DATABASES['default'].update(db_from_env)
 
-ALLOWED_HOSTS = 'ALLOWED_HOSTS'
+
+ALLOWED_HOSTS = ''
 
 
 
